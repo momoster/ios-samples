@@ -11,7 +11,7 @@ namespace ThreadedCoreData
 	{
 		NSManagedObjectContext managedObjectContext;
 		NSFetchedResultsController fetchedResultsController;
-		FecthResultsControllerDelegate fecthResultsControllerDelegate;
+		FetchedResultsControllerDelegate fetchedResultsControllerDelegate;
 		NSPersistentStoreCoordinator persistentStoreCoordinator;
 		NSManagedObjectModel managedObjectModel;
 		UIBarButtonItem activityIndicator;
@@ -83,7 +83,7 @@ namespace ThreadedCoreData
 					fetchRequest.SortDescriptors = new  NSSortDescriptor[] { new NSSortDescriptor ("date", false) };
 
 					fetchedResultsController = new NSFetchedResultsController (fetchRequest, ManagedObjectContext, null, null);
-					fetchedResultsController.Delegate = fecthResultsControllerDelegate;
+					fetchedResultsController.Delegate = fetchedResultsControllerDelegate;
 
 					NSError error;
 					if (fetchedResultsController.PerformFetch (out error)) {
@@ -104,7 +104,7 @@ namespace ThreadedCoreData
 		{
 			base.ViewDidLoad ();
 
-			fecthResultsControllerDelegate = new FecthResultsControllerDelegate () {
+			fetchedResultsControllerDelegate = new FetchedResultsControllerDelegate () {
 				TableView = TableView
 			};
 
@@ -229,7 +229,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		class FecthResultsControllerDelegate : NSFetchedResultsControllerDelegate
+		class FetchedResultsControllerDelegate : NSFetchedResultsControllerDelegate
 		{
 			public UITableView TableView { get; set; }
 
